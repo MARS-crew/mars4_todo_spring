@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import mars4.todos.coommon.domain.BaseTimeEntity;
+import mars4.todos.coommon.dto.UserAuthority;
 
 import javax.persistence.*;
 
@@ -20,9 +21,13 @@ public class User extends BaseTimeEntity {
     @Column(name = "user_idx")
     private Long idx;
 
-    @Column()
+    @Column(unique = true, nullable = false)
     private String id;
 
-    @Column()
+    @Column(nullable = false, length = 255)
     private String password;
+
+    @Column(nullable = false)
+    private UserAuthority authority;
+
 }

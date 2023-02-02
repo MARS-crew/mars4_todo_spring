@@ -1,6 +1,10 @@
 package mars4.todos.config;
 
 import lombok.RequiredArgsConstructor;
+import mars4.todos.jwt.JwtAccessDeniedHandler;
+import mars4.todos.jwt.JwtAuthenticationEntryPoint;
+import mars4.todos.jwt.JwtSecurityConfig;
+import mars4.todos.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -16,7 +20,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 
 @EnableWebSecurity
@@ -24,7 +28,10 @@ import java.util.Arrays;
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
+    private final TokenProvider tokenProvider;
     private final CorsFilter corsFilter;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
     @Bean
     public PasswordEncoder getPasswordEncoder() {
@@ -33,19 +40,25 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.cors();
+
         httpSecurity
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .csrf().disable()
                 .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling()
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .accessDeniedHandler(jwtAccessDeniedHandler)
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                .antMatchers("*").permitAll()
-                .anyRequest().permitAll();
+                .antMatchers("/api/user", "/api/user/login", "/api/**").permitAll()
+                .anyRequest().permitAll()
+                .and()
+                .apply(new JwtSecurityConfig(tokenProvider));
 
         return httpSecurity.build();
     }
@@ -56,7 +69,7 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
-        config.setAllowedOrigins(Arrays.asList("*"));
+        config.setAllowedOriginPatterns(Collections.singletonList("*"));
         source.registerCorsConfiguration("/**", config);
         return source;
     }

@@ -6,6 +6,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import mars4.todos.coommon.dto.RequestResponseDto;
 import mars4.todos.user.service.UserService;
+import mars4.todos.user.dto.RequestLoginUserDto;
+import mars4.todos.user.dto.RequestSaveUserDto;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +26,7 @@ public class UserController {
     @ApiResponse(responseCode = "401", description = "Access denied")
     @ApiResponse(responseCode = "500", description = "Internal Server Error")
     @PostMapping()
-    public RequestResponseDto<?> saveUser(@RequestBody RequestResponseDto dto) {
+    public RequestResponseDto<?> saveUser(@RequestBody RequestSaveUserDto dto) {
         return userService.save(dto);
     }
 
@@ -34,7 +36,7 @@ public class UserController {
     @ApiResponse(responseCode = "401", description = "Access denied")
     @ApiResponse(responseCode = "500", description = "Internal Server Error")
     @PostMapping("/login")
-    public RequestResponseDto<?> login(@RequestBody RequestResponseDto dto) {
+    public RequestResponseDto<?> login(@RequestBody RequestLoginUserDto dto) {
         return userService.login(dto);
     }
 }
