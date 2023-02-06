@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import mars4.todos.bucket.dto.RequestUpdateBucketDto;
 import mars4.todos.bucket.dto.RequestUpdateStateBucketDto;
 import mars4.todos.bucket.service.BucketService;
-import mars4.todos.category.dto.RequestSaveCategoryDto;
 import mars4.todos.coommon.dto.RequestResponseDto;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +24,7 @@ public class BucketController {
     @ApiResponse(responseCode = "500", description = "Internal Server Error")
     @PostMapping("/{id}")
     public RequestResponseDto<?> saveBucket(@PathVariable(name = "id") Long id) {
+
         return bucketService.saveBucket(id);
     }
 
@@ -65,7 +65,7 @@ public class BucketController {
     @ApiResponse(responseCode = "500", description = "Internal Server Error")
     @PatchMapping("/{id}")
     public RequestResponseDto<?> updateStateBucket(@RequestBody RequestUpdateStateBucketDto dto, @PathVariable(name = "id") Long id) {
-        return bucketService.updateBucket(dto, id);
+        return bucketService.updateStateBucket(dto, id);
     }
 
     @Operation(summary = "Save Bucket", description = "버킷 생성하기")
