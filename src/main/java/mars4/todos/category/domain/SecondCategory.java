@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import mars4.todos.coommon.domain.BaseTimeEntity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "tbl_2nd_category")
@@ -25,7 +23,7 @@ public class SecondCategory extends BaseTimeEntity {
     @Column(name = "2nd_name")
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "2nd_idx")
-    private List<ThirdCategory> thirdCategoryList = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "1st_idx")
+    private FirstCategory firstCategory;
 }
