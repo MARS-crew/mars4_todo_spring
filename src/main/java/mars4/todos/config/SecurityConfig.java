@@ -55,8 +55,8 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                .antMatchers("/api/user", "/api/user/login", "/api/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/api/user", "/api/user/login", "/api/**", "/swagger-ui/index.html").permitAll()
+                .anyRequest().permitAll()
                 .and()
                 .apply(new JwtSecurityConfig(tokenProvider));
 
