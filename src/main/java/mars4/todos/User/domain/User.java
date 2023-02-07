@@ -1,4 +1,4 @@
-package mars4.todos.user.domain;
+package mars4.todos.User.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +10,7 @@ import mars4.todos.coommon.dto.UserAuthority;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_user")
+@Table(name = "tbl_member")
 @Data
 @Builder
 @AllArgsConstructor
@@ -18,7 +18,7 @@ import javax.persistence.*;
 public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_idx")
+    @Column(name = "member_idx")
     private Long idx;
 
     @Column(unique = true, nullable = false)
@@ -29,5 +29,4 @@ public class User extends BaseTimeEntity {
 
     @Column(nullable = false)
     private UserAuthority authority;
-
 }
