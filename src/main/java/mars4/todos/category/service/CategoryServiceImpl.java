@@ -9,7 +9,6 @@ import mars4.todos.category.repository.FirstJpaRepository;
 import mars4.todos.category.repository.SecondJpaRepository;
 import mars4.todos.category.repository.ThirdJpaRepository;
 import mars4.todos.coommon.dto.RequestResponseDto;
-import mars4.todos.user.service.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -24,7 +23,7 @@ public class CategoryServiceImpl implements CategoryService{
     private final SecondJpaRepository secondJpaRepository;
     private final ThirdJpaRepository thirdJpaRepository;
 
-    private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+    private final Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
 
     @Override
     public RequestResponseDto<?> saveFirstCategory(RequestSaveCategoryDto dto) {

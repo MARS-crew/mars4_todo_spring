@@ -1,8 +1,8 @@
-package mars4.todos.User.service;
+package mars4.todos.user.service;
 
 import lombok.RequiredArgsConstructor;
-import mars4.todos.User.domain.User;
-import mars4.todos.User.repository.UserJpaRepository;
+import mars4.todos.user.domain.User;
+import mars4.todos.user.repository.UserJpaRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

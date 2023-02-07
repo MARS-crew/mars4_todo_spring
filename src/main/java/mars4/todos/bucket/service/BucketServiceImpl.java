@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -50,7 +51,7 @@ public class BucketServiceImpl implements BucketService{
                     .comYn(false)
                     .build();
 
-            return RequestResponseDto.of(HttpStatus.OK, RequestResponseDto.Code.SUCCESS, "Bucket를 생성하였습니다.", bucket);
+            return RequestResponseDto.of(HttpStatus.OK, RequestResponseDto.Code.SUCCESS, "Bucket를 생성하였습니다.", bucketJpaRepository.save(bucket));
         }catch (Exception e){
             logger.info("ERROR : " + e);
             return RequestResponseDto.of(HttpStatus.INTERNAL_SERVER_ERROR, RequestResponseDto.Code.FAILED, e.getMessage(), null);
@@ -76,7 +77,14 @@ public class BucketServiceImpl implements BucketService{
     @Override
     public RequestResponseDto<?> findAllBucket() {
         try {
-            return RequestResponseDto.of(HttpStatus.OK, RequestResponseDto.Code.SUCCESS,"버킷을 조회하였습니다.", bucketJpaRepository.findAll());
+            Optional<User> findUser = userJpaRepository.findUserById(SecurityUtil.getCurrentUserIdx());
+
+            if(findUser.isEmpty()){
+                return RequestResponseDto.of(HttpStatus.NOT_FOUND, RequestResponseDto.Code.FAILED, "User를 찾을 수 없습니다.", null);
+            }
+            List<Bucket> bucketList = bucketJpaRepository.findAllByUser(findUser.get());
+            System.out.println("1" + bucketList);
+            return RequestResponseDto.of(HttpStatus.OK, RequestResponseDto.Code.SUCCESS,"버킷을 조회하였습니다.", bucketList);
         }catch (Exception e){
             logger.info("ERROR : " + e);
             return RequestResponseDto.of(HttpStatus.INTERNAL_SERVER_ERROR, RequestResponseDto.Code.FAILED, e.getMessage(), null);
@@ -86,10 +94,20 @@ public class BucketServiceImpl implements BucketService{
     @Override
     public RequestResponseDto<?> updateBucket(RequestUpdateBucketDto dto, Long id) {
         try {
+            Optional<User> findUser = userJpaRepository.findUserById(SecurityUtil.getCurrentUserIdx());
+
+            if(findUser.isEmpty()){
+                return RequestResponseDto.of(HttpStatus.NOT_FOUND, RequestResponseDto.Code.FAILED, "User를 찾을 수 없습니다.", null);
+            }
+
             Optional<Bucket> findBucket = bucketJpaRepository.findById(id);
 
             if(findBucket.isEmpty()){
                 return RequestResponseDto.of(HttpStatus.NOT_FOUND, RequestResponseDto.Code.FAILED, "Bucket를 찾을 수 없습니다.", null);
+            }
+
+            if (!(findBucket.get().getUser().equals(findUser.get()))) {
+                return RequestResponseDto.of(HttpStatus.NOT_FOUND, RequestResponseDto.Code.FAILED, "Bucket에 대한 권한이 없습니다.", null);
             }
 
             findBucket.get().setText(dto.getText());
@@ -105,10 +123,20 @@ public class BucketServiceImpl implements BucketService{
     @Override
     public RequestResponseDto<?> updateStateBucket(RequestUpdateStateBucketDto dto, Long id) {
         try {
+            Optional<User> findUser = userJpaRepository.findUserById(SecurityUtil.getCurrentUserIdx());
+
+            if(findUser.isEmpty()){
+                return RequestResponseDto.of(HttpStatus.NOT_FOUND, RequestResponseDto.Code.FAILED, "User를 찾을 수 없습니다.", null);
+            }
+
             Optional<Bucket> findBucket = bucketJpaRepository.findById(id);
 
             if(findBucket.isEmpty()){
                 return RequestResponseDto.of(HttpStatus.NOT_FOUND, RequestResponseDto.Code.FAILED, "Bucket를 찾을 수 없습니다.", null);
+            }
+
+            if (!(findBucket.get().getUser().equals(findUser.get()))) {
+                return RequestResponseDto.of(HttpStatus.NOT_FOUND, RequestResponseDto.Code.FAILED, "Bucket에 대한 권한이 없습니다.", null);
             }
 
             findBucket.get().setComYn(dto.isState());
@@ -124,10 +152,20 @@ public class BucketServiceImpl implements BucketService{
     @Override
     public RequestResponseDto<?> deleteBucket(Long id) {
         try {
+            Optional<User> findUser = userJpaRepository.findUserById(SecurityUtil.getCurrentUserIdx());
+
+            if(findUser.isEmpty()){
+                return RequestResponseDto.of(HttpStatus.NOT_FOUND, RequestResponseDto.Code.FAILED, "User를 찾을 수 없습니다.", null);
+            }
+
             Optional<Bucket> findBucket = bucketJpaRepository.findById(id);
 
             if(findBucket.isEmpty()){
                 return RequestResponseDto.of(HttpStatus.NOT_FOUND, RequestResponseDto.Code.FAILED, "Bucket를 찾을 수 없습니다.", null);
+            }
+
+            if (!(findBucket.get().getUser().equals(findUser.get()))) {
+                return RequestResponseDto.of(HttpStatus.NOT_FOUND, RequestResponseDto.Code.FAILED, "Bucket에 대한 권한이 없습니다.", null);
             }
 
             bucketJpaRepository.delete(findBucket.get());

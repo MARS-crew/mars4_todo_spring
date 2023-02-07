@@ -24,7 +24,6 @@ public class BucketController {
     @ApiResponse(responseCode = "500", description = "Internal Server Error")
     @PostMapping("/{id}")
     public RequestResponseDto<?> saveBucket(@PathVariable(name = "id") Long id) {
-
         return bucketService.saveBucket(id);
     }
 

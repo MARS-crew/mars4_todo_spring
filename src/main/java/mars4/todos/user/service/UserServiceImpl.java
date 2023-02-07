@@ -1,13 +1,13 @@
-package mars4.todos.User.service;
+package mars4.todos.user.service;
 
 import lombok.RequiredArgsConstructor;
 import mars4.todos.coommon.dto.RequestResponseDto;
 import mars4.todos.coommon.dto.UserAuthority;
 import mars4.todos.jwt.TokenProvider;
-import mars4.todos.User.domain.User;
-import mars4.todos.User.dto.RequestLoginUserDto;
-import mars4.todos.User.dto.RequestSaveUserDto;
-import mars4.todos.User.repository.UserJpaRepository;
+import mars4.todos.user.domain.User;
+import mars4.todos.user.dto.RequestLoginUserDto;
+import mars4.todos.user.dto.RequestSaveUserDto;
+import mars4.todos.user.repository.UserJpaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
