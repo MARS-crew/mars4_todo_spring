@@ -1,13 +1,13 @@
-package mars4.todos.user.service;
+package mars4.todos.User.service;
 
 import lombok.RequiredArgsConstructor;
 import mars4.todos.coommon.dto.RequestResponseDto;
 import mars4.todos.coommon.dto.UserAuthority;
 import mars4.todos.jwt.TokenProvider;
-import mars4.todos.user.domain.User;
-import mars4.todos.user.dto.RequestLoginUserDto;
-import mars4.todos.user.dto.RequestSaveUserDto;
-import mars4.todos.user.repository.UserJpaRepository;
+import mars4.todos.User.domain.User;
+import mars4.todos.User.dto.RequestLoginUserDto;
+import mars4.todos.User.dto.RequestSaveUserDto;
+import mars4.todos.User.repository.UserJpaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
             Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             Map<String, String> response = new HashMap<>();
-            response.put("token", tokenProvider.createToken(authentication));
+            response.put("token", tokenProvider.createToken(dto.getId()));
             return RequestResponseDto.of(HttpStatus.OK, RequestResponseDto.Code.SUCCESS, "로그인 성공 하였습니다.", response);
         } catch (Exception e) {
             logger.info("ERROR :" + e);

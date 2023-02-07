@@ -1,4 +1,4 @@
-package mars4.todos.user.dto;
+package mars4.todos.User.dto;
 
 import lombok.Getter;
 

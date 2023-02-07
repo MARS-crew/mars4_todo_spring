@@ -1,13 +1,13 @@
-package mars4.todos.user.controller;
+package mars4.todos.User.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import mars4.todos.coommon.dto.RequestResponseDto;
-import mars4.todos.user.service.UserService;
-import mars4.todos.user.dto.RequestLoginUserDto;
-import mars4.todos.user.dto.RequestSaveUserDto;
+import mars4.todos.User.service.UserService;
+import mars4.todos.User.dto.RequestLoginUserDto;
+import mars4.todos.User.dto.RequestSaveUserDto;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
