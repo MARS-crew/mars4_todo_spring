@@ -27,11 +27,11 @@ public class Bucket extends BaseTimeEntity {
     @Column()
     private boolean comYn;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_idx")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "3th_idx")
     private ThirdCategory thirdCategory;
 }

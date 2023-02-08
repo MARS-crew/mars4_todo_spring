@@ -23,7 +23,7 @@ public class SecondCategory extends BaseTimeEntity {
     @Column(name = "2nd_name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "1st_idx")
     private FirstCategory firstCategory;
 }
