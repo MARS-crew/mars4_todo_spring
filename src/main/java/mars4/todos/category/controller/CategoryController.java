@@ -55,5 +55,4 @@ public class CategoryController {
     public RequestResponseDto<?> getAllCategory() {
         return categoryService.findCategory();
     }
-
 }

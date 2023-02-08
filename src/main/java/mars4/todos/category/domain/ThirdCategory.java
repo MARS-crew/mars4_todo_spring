@@ -1,5 +1,6 @@
 package mars4.todos.category.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class ThirdCategory extends BaseTimeEntity {
     @Column(name = "3th_name")
     private String name;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "2nd_idx")
     private SecondCategory secondCategory;

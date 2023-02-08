@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import mars4.todos.category.domain.FirstCategory;
 import mars4.todos.category.domain.SecondCategory;
 import mars4.todos.category.domain.ThirdCategory;
+import mars4.todos.category.dto.FirstCategoryResponseDto;
 import mars4.todos.category.dto.RequestSaveCategoryDto;
 import mars4.todos.category.repository.FirstJpaRepository;
 import mars4.todos.category.repository.SecondJpaRepository;
@@ -14,7 +15,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -84,7 +87,8 @@ public class CategoryServiceImpl implements CategoryService{
     @Override
     public RequestResponseDto<?> findCategory() {
         try{
-            return RequestResponseDto.of(HttpStatus.OK, RequestResponseDto.Code.SUCCESS, "조회 성공", firstJpaRepository.findAll());
+            List<FirstCategory> firstCategories = firstJpaRepository.findAll();
+            return RequestResponseDto.of(HttpStatus.OK, RequestResponseDto.Code.SUCCESS, "조회 성공",firstCategories.stream().map(firstCategory -> new FirstCategoryResponseDto(firstCategory)).collect(Collectors.toList()));
         }catch (Exception e){
             logger.info("ERROR : " + e);
             return RequestResponseDto.of(HttpStatus.INTERNAL_SERVER_ERROR, RequestResponseDto.Code.FAILED, e.getMessage(), null);
