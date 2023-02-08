@@ -76,6 +76,6 @@ public class BucketController {
     @ApiResponse(responseCode = "500", description = "Internal Server Error")
     @DeleteMapping("/{id}")
     public RequestResponseDto<?> deleteBucket(@PathVariable(name = "id") Long id) {
-        return bucketService.saveBucket(id);
+        return bucketService.deleteBucket(id);
     }
 }
