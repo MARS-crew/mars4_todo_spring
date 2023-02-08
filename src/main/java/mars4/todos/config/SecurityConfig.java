@@ -33,6 +33,13 @@ public class SecurityConfig {
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
+    private final String[] AUTH_WHITELIST = {
+            // -- Swagger UI v2
+            "/v2/api-docs", "/swagger-resources", "/swagger-resources/**", "/configuration/ui", "/configuration/security", "/swagger-ui.html", "/webjars/**", "/swagger-ui/**",
+            // other public endpoints of your API may be appended to this array
+            "/**", "/api/user", "/api/user/login", "/api/**", "/swagger-ui/index.html"};
+
+
     @Bean
     public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -42,8 +49,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.cors();
 
-        httpSecurity
-                .cors().configurationSource(corsConfigurationSource())
+        httpSecurity.cors()
+                .configurationSource(corsConfigurationSource())
                 .and()
                 .csrf().disable()
                 .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
@@ -55,10 +62,9 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                .antMatchers("/api/user", "/api/user/login", "/api/**", "/swagger-ui/index.html").permitAll()
+                .antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest().permitAll()
-                .and()
-                .apply(new JwtSecurityConfig(tokenProvider));
+                .and().apply(new JwtSecurityConfig(tokenProvider));
 
         return httpSecurity.build();
     }
