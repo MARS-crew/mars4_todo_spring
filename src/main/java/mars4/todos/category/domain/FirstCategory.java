@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mars4.todos.coommon.domain.BaseTimeEntity;
+import mars4.todos.common.domain.BaseTimeEntity;
 import javax.persistence.*;
 
 @Entity

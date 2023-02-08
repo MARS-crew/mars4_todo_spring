@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import mars4.todos.category.dto.RequestSaveCategoryDto;
 import mars4.todos.category.service.CategoryService;
-import mars4.todos.coommon.dto.RequestResponseDto;
+import mars4.todos.common.dto.RequestResponseDto;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name="Category", description = "카테고리 API")

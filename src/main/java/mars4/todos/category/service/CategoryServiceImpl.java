@@ -8,7 +8,7 @@ import mars4.todos.category.dto.RequestSaveCategoryDto;
 import mars4.todos.category.repository.FirstJpaRepository;
 import mars4.todos.category.repository.SecondJpaRepository;
 import mars4.todos.category.repository.ThirdJpaRepository;
-import mars4.todos.coommon.dto.RequestResponseDto;
+import mars4.todos.common.dto.RequestResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

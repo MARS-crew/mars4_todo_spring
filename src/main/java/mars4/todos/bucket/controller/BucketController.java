@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import mars4.todos.bucket.dto.RequestUpdateBucketDto;
 import mars4.todos.bucket.dto.RequestUpdateStateBucketDto;
 import mars4.todos.bucket.service.BucketService;
-import mars4.todos.coommon.dto.RequestResponseDto;
+import mars4.todos.common.dto.RequestResponseDto;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name="Bucket List", description = "버킷 리스트")

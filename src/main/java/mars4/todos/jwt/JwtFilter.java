@@ -1,7 +1,7 @@
 package mars4.todos.jwt;
 
 import lombok.RequiredArgsConstructor;
-import mars4.todos.coommon.dto.ExceptionEnum;
+import mars4.todos.common.dto.ExceptionEnum;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;

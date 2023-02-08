@@ -3,7 +3,7 @@ package mars4.todos.jwt;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import mars4.todos.coommon.dto.UserAuthority;
+import mars4.todos.common.dto.UserAuthority;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;

@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import mars4.todos.user.domain.User;
 import mars4.todos.category.domain.ThirdCategory;
-import mars4.todos.coommon.domain.BaseTimeEntity;
+import mars4.todos.common.domain.BaseTimeEntity;
 
 import javax.persistence.*;
 

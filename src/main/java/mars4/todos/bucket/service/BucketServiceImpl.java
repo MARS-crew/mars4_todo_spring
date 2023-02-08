@@ -7,7 +7,7 @@ import mars4.todos.bucket.dto.RequestUpdateStateBucketDto;
 import mars4.todos.bucket.repository.BucketJpaRepository;
 import mars4.todos.category.domain.ThirdCategory;
 import mars4.todos.category.repository.ThirdJpaRepository;
-import mars4.todos.coommon.dto.RequestResponseDto;
+import mars4.todos.common.dto.RequestResponseDto;
 import mars4.todos.user.domain.User;
 import mars4.todos.user.repository.UserJpaRepository;
 import mars4.todos.user.service.UserServiceImpl;

@@ -1,8 +1,8 @@
 package mars4.todos.user.service;
 
 import lombok.RequiredArgsConstructor;
-import mars4.todos.coommon.dto.RequestResponseDto;
-import mars4.todos.coommon.dto.UserAuthority;
+import mars4.todos.common.dto.RequestResponseDto;
+import mars4.todos.common.dto.UserAuthority;
 import mars4.todos.jwt.TokenProvider;
 import mars4.todos.user.domain.User;
 import mars4.todos.user.dto.RequestLoginUserDto;

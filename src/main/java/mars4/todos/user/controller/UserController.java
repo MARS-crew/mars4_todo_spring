@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import mars4.todos.coommon.dto.RequestResponseDto;
+import mars4.todos.common.dto.RequestResponseDto;
 import mars4.todos.user.service.UserService;
 import mars4.todos.user.dto.RequestLoginUserDto;
 import mars4.todos.user.dto.RequestSaveUserDto;

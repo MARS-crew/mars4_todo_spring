@@ -1,4 +1,4 @@
-package mars4.todos.coommon.dto;
+package mars4.todos.common.dto;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;
