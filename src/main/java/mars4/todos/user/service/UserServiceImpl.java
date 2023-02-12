@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
             User saveUser = User.builder()
                     .id(dto.getId())
                     .password(passwordEncoder.encode(dto.getPassword()))
+                    .name(dto.getName())
                     .authority(UserAuthority.ROLE_USER)
                     .build();
 
@@ -64,11 +65,15 @@ public class UserServiceImpl implements UserService {
             if(!passwordEncoder.matches(dto.getPassword(), findUser.get().getPassword())){
                 return RequestResponseDto.of(HttpStatus.BAD_REQUEST, RequestResponseDto.Code.FAILED, "비밀번호가 같지 앖습니다.", false);
             }
+
             UsernamePasswordAuthenticationToken authenticationToken = dto.toAuthentication();
             Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
+
             Map<String, String> response = new HashMap<>();
             response.put("token", tokenProvider.createToken(dto.getId()));
+            response.put("name", findUser.get().getName());
+
             return RequestResponseDto.of(HttpStatus.OK, RequestResponseDto.Code.SUCCESS, "로그인 성공 하였습니다.", response);
         } catch (Exception e) {
             logger.info("ERROR :" + e);

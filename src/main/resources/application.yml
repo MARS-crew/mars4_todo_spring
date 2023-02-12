@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://210.223.18.224:3306/mars4_bucket_dev
-    username: pino
-    password: qwer1595
+    url: jdbc:mysql://parkbomin.duckdns.org:13306/mars_todo_dev
+    username: root
+    password: admin
   jpa:
     show-sql: true
     hibernate:

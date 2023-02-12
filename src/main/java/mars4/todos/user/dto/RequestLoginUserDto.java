@@ -1,9 +1,9 @@
 package mars4.todos.user.dto;
 
-import lombok.Getter;
+import lombok.Data;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
-@Getter
+@Data
 public class RequestLoginUserDto {
     private String id;
     private String password;
