@@ -10,7 +10,7 @@ import mars4.todos.coommon.dto.UserAuthority;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_member")
+@Table(name = "tbl_user")
 @Data
 @Builder
 @AllArgsConstructor
@@ -18,7 +18,7 @@ import javax.persistence.*;
 public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "member_idx")
+    @Column(name = "user_idx")
     private Long idx;
 
     @Column(unique = true, nullable = false)
