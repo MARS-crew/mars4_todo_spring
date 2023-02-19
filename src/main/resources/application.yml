@@ -7,7 +7,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: update1
       use-new-id-generator-mappings: false
     properties:
       hibernate:
